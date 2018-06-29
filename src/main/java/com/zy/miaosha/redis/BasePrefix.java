@@ -20,11 +20,17 @@ public abstract class BasePrefix implements KeyPrefix{
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    
 
     @Override
     public String getPrefix() {
         String className = getClass().getSimpleName();
         return className + ":" + prefix;
+    }
+
+    public int getExpireSeconds() {
+        return expireSeconds;
     }
     
 }

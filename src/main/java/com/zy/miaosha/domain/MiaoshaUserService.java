@@ -3,6 +3,7 @@ package com.zy.miaosha.domain;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import com.zy.miaosha.vo.LoginVo;
 @Service
 public class MiaoshaUserService {
     
-    private static final String COOKIE_NAME_TOKEN = "token";
+    public static final String COOKIE_NAME_TOKEN = "token";
     
     @Autowired
     MiaoshaUserMapper miaoshaUserMapper;
@@ -56,9 +57,17 @@ public class MiaoshaUserService {
     private void addCookie(HttpServletResponse response, String token, MiaoshaUser miaoshaUser) {
         redisService.set(MiaoshaUserKey.token, token, miaoshaUser);
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
-        cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
+        System.out.println(MiaoshaUserKey.token.getExpireSeconds());
+        cookie.setMaxAge(MiaoshaUserKey.token.getExpireSeconds());
         cookie.setPath("/");
         response.addCookie(cookie);
+    }
+
+    public MiaoshaUser getByToken(String token) {
+        if (StringUtils.isEmpty(token)) {
+            return null;
+        }
+        return redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
     }
 }
 
