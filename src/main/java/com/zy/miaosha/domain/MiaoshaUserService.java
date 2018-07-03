@@ -63,11 +63,15 @@ public class MiaoshaUserService {
         response.addCookie(cookie);
     }
 
-    public MiaoshaUser getByToken(String token) {
+    public MiaoshaUser getByToken(HttpServletResponse response, String token) {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        return redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        MiaoshaUser user = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        // 延长token有效期
+        addCookie(response, token, user);
+        return user;
+        
     }
 }
 
