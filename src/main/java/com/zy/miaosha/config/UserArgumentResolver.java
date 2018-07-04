@@ -14,7 +14,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.alibaba.druid.util.StringUtils;
 import com.zy.miaosha.domain.MiaoshaUser;
-import com.zy.miaosha.domain.MiaoshaUserService;
+import com.zy.miaosha.service.MiaoshaUserService;
 
 @Service
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {

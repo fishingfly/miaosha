@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.util.StringUtils;
-import com.zy.miaosha.domain.MiaoshaUserService;
 import com.zy.miaosha.redis.RedisService;
 import com.zy.miaosha.result.CodeMsg;
 import com.zy.miaosha.result.Result;
+import com.zy.miaosha.service.MiaoshaUserService;
 import com.zy.miaosha.util.ValidatorUtil;
 import com.zy.miaosha.vo.LoginVo;
 

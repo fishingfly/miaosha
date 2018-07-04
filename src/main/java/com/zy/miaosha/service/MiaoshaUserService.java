@@ -1,4 +1,4 @@
-package com.zy.miaosha.domain;
+package com.zy.miaosha.service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zy.miaosha.dao.MiaoshaUserMapper;
+import com.zy.miaosha.domain.MiaoshaUser;
 import com.zy.miaosha.exception.GlobalException;
 import com.zy.miaosha.redis.MiaoshaUserKey;
 import com.zy.miaosha.redis.RedisService;
