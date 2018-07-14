@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zy.miaosha.domain.User;
+import com.zy.miaosha.rabbitmq.MQSender;
 import com.zy.miaosha.redis.RedisService;
 import com.zy.miaosha.redis.UserKey;
 import com.zy.miaosha.result.Result;
@@ -21,6 +22,9 @@ public class DemoController {
     
     @Autowired
     RedisService redisService;
+    
+    @Autowired
+    private MQSender sender;
     
     @RequestMapping( value = "/")
     @ResponseBody
@@ -65,4 +69,10 @@ public class DemoController {
         return Result.success(userService.tx());
     }
     
+    @RequestMapping(value = "/mq")
+    @ResponseBody
+    public Result<String> mq() {
+        sender.send("hello, zhouyu");
+        return Result.success("yes");
+    }
 }
